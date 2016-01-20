@@ -1,0 +1,103 @@
+
+#
+# DNS - Arquivo de configuração do servidor BIND (DNS)
+# ATENÇÂO: Arquivo atualizado automáticamente pelo PUPPET server.
+#
+
+#
+# Named configurations : Main config file
+# '-> Arquivo de configuração principal do DNS
+#
+
+
+//
+// named.conf
+//
+// Provided by Red Hat bind package to configure the ISC BIND named(8) DNS
+// server as a caching only nameserver (as a localhost DNS resolver only).
+//
+// See /usr/share/doc/bind*/sample/ for example named configuration files.
+//
+
+options {
+
+        version  "Windows DNS 5.1";
+
+	listen-on port 53 { 
+		127.0.0.1;
+		<%= @ipaddress -%>; 
+	};
+	listen-on-v6 port 53 { ::1; };
+
+	directory 	"/var/named/chroot/var/named";
+	dump-file 	"/var/named/data/cache_dump.db";
+	statistics-file "/var/named/data/named_stats.txt";
+	memstatistics-file "/var/named/data/named_mem_stats.txt";
+
+        # Global query restrictions
+	allow-query             { any; };
+        clients-per-query       0;
+        max-clients-per-query   0;
+
+	/* 
+	 - If you are building an AUTHORITATIVE DNS server, do NOT enable recursion.
+	 - If you are building a RECURSIVE (caching) DNS server, you need to enable 
+	   recursion. 
+	 - If your recursive DNS server has a public IP address, you MUST enable access 
+	   control to limit queries to your legitimate users. Failing to do so will
+	   cause your server to become part of large scale DNS amplification 
+	   attacks. Implementing BCP38 within your network would greatly
+	   reduce such attack surface 
+	*/
+	# Recursion will be override in external view
+	recursion no;
+
+        # Enable DNSSec
+	dnssec-enable yes;
+	dnssec-validation yes;
+
+	/* Path to ISC DLV key */
+	bindkeys-file "/etc/named/named.iscdlv.key";
+
+	managed-keys-directory "/var/named/dynamic";
+
+	pid-file "/run/named/named.pid";
+	session-keyfile "/run/named/session.key";
+};
+
+#############################################
+#
+# ACL management / Definição de Listas de controle 
+#  de acesso
+#
+
+include "/etc/named/acl.conf";
+
+#############################################
+#
+# Logging management / Gerenciamento de logs
+#
+
+#logging {
+#        channel default_debug {
+#                file "data/named.run";
+#                severity dynamic;
+#        };
+#};
+
+include "/etc/named/logging.conf";
+
+#############################################
+#
+# Keys management / Gerenciamento de chaves RNDC
+# 
+
+#include "/etc/named/named.root.key";
+include "/etc/named/key.conf";
+
+#############################################
+#
+# Zones management / Gerenciamento de zonas
+# 
+include "/etc/named/zones.conf";
+
