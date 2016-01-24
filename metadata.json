@@ -1,10 +1,10 @@
 {
   "name": "mtulio-dnssec",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "mtulio",
   "summary": "Module to manage DNS using CHROOT and sign DNSsec zones.",
   "description": "Module to manage DNS using CHROOT and sign DNSsec zones.",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/mtulio/puppet-mod-dnssec",
   "project_page": "https://github.com/mtulio/puppet-mod-dnssec",
   "issues_url": "https://github.com/mtulio/puppet-mod-dnssec/issues",
@@ -32,7 +32,7 @@
     }
   ],
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
+    {"name":"puppetlabs-stdlib","version_requirement":">= 4.10.0"},
     {"name":"puppetlabs-firewall","version_requirement":">= 1.1.3"}
   ]
 }

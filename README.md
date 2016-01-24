@@ -90,6 +90,9 @@ See project page at :
 
 ## 8. Release Notes
 
+[1.0.1]
+* Fix metadata dependences
+
 [1.0.0]
 * Add dnssec support to be configured from templates
 * Add script to sign zones
