@@ -4,12 +4,16 @@
 # Commands to be executed by 'notify commands'.
 #
 class dnssec::exec (
-  $dir_zone    = $dnssec::params::dir_zone,
-  $script_sign = $dnssec::params::script_sign
+  $dir_zone    = $dir_zone,
+  $script_sign = $script_sign,
+  $dnssec_en   = $gb_dnssec_en
 ) inherits dnssec {
-  exec { 'ExecSignAll' :
-    command     => "${dir_zone}/master/${script_sign}",
-    refreshonly => true,
-    require     => File['ScriptSignZone']
+
+  if $dnssec_en == 'yes' {
+    exec { 'ExecSignAll' :
+      command     => "${dir_zone}/master/${script_sign}",
+      refreshonly => true,
+      require     => File['ScriptSignZone']
+    }
   }
 }
