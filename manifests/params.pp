@@ -28,4 +28,21 @@ class dnssec::params {
   $dir_scripts    = 'puppet:///modules/dnssec/scripts'
   $script_sign    = 'dnssec_sign_zones.sh'
 
+  ## GLOBAL options ##
+  $gb_opt_directory       = '/var/named/chroot/var/named'
+  $gb_opt_dump_file       = '/var/named/data/cache_dump.db'
+  $gb_opt_stats_file      = '/var/named/data/named_stats.txt'
+  $gb_opt_mstats_file     = '/var/named/data/named_mem_stats.txt'
+  
+  $gb_opt_version         = 'undisclosed'
+  
+  $gb_opt_recursion       = 'no'
+  $gb_opt_allow_recursion = 'any'
+
+  $gb_opt_allow_query     = 'any'
+  $gb_opt_cli_per_query   = '0'
+  $gb_opt_max_cli_p_query = '0'
+
+  $gb_dnssec_en           = 'yes'
+
 } # end class

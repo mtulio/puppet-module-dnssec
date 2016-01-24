@@ -6,9 +6,14 @@
 define dnssec::config (
   $files_conf     = undef,
   $use_template   = 'yes',
+
   ## GLOBALS ##
   $root_jail     = $dnssec::params::root_jail,
-  $config_file   = $dnssec::params::config_file
+  $config_file   = $dnssec::params::config_file,
+  $gb_dnssec_en  = $dnssec::params::gb_dnssec_en,
+  $gb_opt_directory  = $dnssec::params::gb_opt_directory,
+  $gb_opt_version    = $dnssec::params::gb_opt_version,
+  $gb_opt_recursion  = $dnssec::params::gb_opt_recursion
 ) {
   include dnssec::params
 

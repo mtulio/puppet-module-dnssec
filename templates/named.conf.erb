@@ -1,12 +1,11 @@
 
 #
-# DNS - Arquivo de configuração do servidor BIND (DNS)
-# ATENÇÂO: Arquivo atualizado automáticamente pelo PUPPET server.
+# DNS - BIND DNS server
+# WARNING: Do not change, file update automatically by PUPPET [dnssec module].
 #
 
 #
-# Named configurations : Main config file
-# '-> Arquivo de configuração principal do DNS
+# This file : Main config file
 #
 
 
@@ -21,7 +20,11 @@
 
 options {
 
-        version  "Windows DNS 5.1";
+<% if @gb_opt_version %>
+        version  "<%= @gb_opt_version %>";
+<% else %>
+        version  "Don't do that!";
+<% end %>
 
 	listen-on port 53 { 
 		127.0.0.1;
@@ -29,7 +32,12 @@ options {
 	};
 	listen-on-v6 port 53 { ::1; };
 
+<% if @gb_opt_directory %>
+	directory 	"<%= @gb_opt_directory %>";
+<% else %>
 	directory 	"/var/named/chroot/var/named";
+<% end %>
+
 	dump-file 	"/var/named/data/cache_dump.db";
 	statistics-file "/var/named/data/named_stats.txt";
 	memstatistics-file "/var/named/data/named_mem_stats.txt";
@@ -49,10 +57,17 @@ options {
 	   attacks. Implementing BCP38 within your network would greatly
 	   reduce such attack surface 
 	*/
+
 	# Recursion will be override in external view
+<% if @gb_opt_recursion %>
+	recursion <%= @gb_opt_recursion %>;
+<% else %>
+        ## recursion -> leaving default config
 	recursion no;
+<% end %>
 
         # Enable DNSSec
+<% if @gb_dnssec_en == 'yes' %>
 	dnssec-enable yes;
 	dnssec-validation yes;
 
@@ -61,8 +76,16 @@ options {
 
 	managed-keys-directory "/var/named/dynamic";
 
-	pid-file "/run/named/named.pid";
 	session-keyfile "/run/named/session.key";
+
+<% else %>
+        ## recursion -> leaving default config
+	dnssec-enable no;
+	dnssec-validation no;
+<% end %>
+
+	pid-file "/run/named/named.pid";
+
 };
 
 #############################################
@@ -99,5 +122,6 @@ include "/etc/named/key.conf";
 #
 # Zones management / Gerenciamento de zonas
 # 
+
 include "/etc/named/zones.conf";
 

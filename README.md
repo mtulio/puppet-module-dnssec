@@ -9,9 +9,10 @@
     * [Setup requirements](#setup-requirements)
     * [Beginning](#beginning)
 4. [Usage](#4-usage)
-5. [Limitations](#5-limitations)
-6. [Development](#6-development)
-7. [Release Notes](#7-release-notes)
+5. [Tests](#5-tests)
+6. [Limitations](#5-limitations)
+7. [Development](#6-development)
+8. [Release Notes](#7-release-notes)
 
 
 ## 1. Overview
@@ -55,30 +56,36 @@ This is a great module to configure BIND server. Now the configuration is static
 
 You have three ways to usage the class: 
 
-1. Using default template
+1. Using default template [zone example.com]
 
 ```
 class { '::dnssec': 
-  base_config    => '0_REPO/dnssec/pool_dmz',
   server_type    => 'master',
   dnssec_enabled => 'yes',
 }
 ```
 
-## 5. Limitations
+## 5. Tests
+
+1. Check BIND version
+```
+# dig @127.0.0.1 -c CH -t txt version.bind +short
+```
+
+## 6. Limitations
 
 OS compatibility [tested]: 
 * Red Hat family 7+ 
 
 We're working to support more OS.
 
-## 6. Development
+## 7. Development
 
 See project page at :
 * Github: https://github.com/mtulio/puppet-mod-dnssec
 * Puppet forge: https://forge.puppetlabs.com/mtulio/dnssec
 
-## 7. Release Notes
+## 8. Release Notes
 
 [1.0.0]
 * Add dnssec support to be configured from templates

@@ -1,12 +1,11 @@
 
-# POOL DMZ
+# POOL EXAMPLE
 
-Este pool manterá os registros DNS da INTERNET.
+Este pool manterá os registros DNS 
 
 Explicação dos diretórios:
 * master/ -> Mantém as configurações do DNS Master (Arquivos de configuração e zona DNS)
 * slave/  -> Mantém as configurações do DNS Slave (somente arquivo de configuração)
-
 
 
 REFERNÊNCIAS:
