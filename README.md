@@ -34,6 +34,9 @@ The struct of directories and files are:
 * /etc/named/key.conf -> /var/named/chroot/etc/named/key.conf		: Keys management.
 * /etc/named/logging.conf -> /var/named/chroot/etc/named/logging.conf	: Configuration of loggins and channels
 * /etc/named/zones.conf -> /var/named/chroot/etc/named/zones.conf	: Zones configuration.
+* /var/named/chroot/var/named/master/zones				: Zones files
+* /var/named/chroot/var/named/master/zones/keys				: Zones keys, if dnssec is enabled
+* /var/named/chroot/var/named/default					: Default zones files - localhost, hint, etc
 
 ## 3. Setup
 
@@ -82,4 +85,9 @@ See project page at :
 
 [1.0.0]
 * Add dnssec support to be configured from templates
+* Add script to sign zones
+* Fix directories of templates
+* Fix bugs on 'example' zone
 
+[0.0.1]
+* Initial version, basic bind configuration

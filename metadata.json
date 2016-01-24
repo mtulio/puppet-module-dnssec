@@ -1,6 +1,6 @@
 {
   "name": "mtulio-dnssec",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "mtulio",
   "summary": "Module to manage DNS using CHROOT and sign DNSsec zones.",
   "description": "Module to manage DNS using CHROOT and sign DNSsec zones.",
