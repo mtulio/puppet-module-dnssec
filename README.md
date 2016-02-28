@@ -90,6 +90,9 @@ See project page at :
 
 ## 8. Release Notes
 
+[1.0.2]
+* Create firewall rules on all interfaces
+
 [1.0.1]
 * Fix metadata dependences
 

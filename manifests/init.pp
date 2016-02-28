@@ -79,14 +79,12 @@ class dnssec (
   }
 
   firewall { '000 accept TCP DNS queries ':
-    iniface => 'eth0',
     proto   => 'tcp',
     port    => '53',
     state   => ['RELATED', 'ESTABLISHED'],
     action  => 'accept',
   }
   firewall { '000 accept UDP DNS queries ':
-    iniface => 'eth0',
     proto   => 'udp',
     port    => '53',
     action  => 'accept',
