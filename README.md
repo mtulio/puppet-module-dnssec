@@ -1,5 +1,8 @@
 # dnssec
 
+[![Puppet Forge](http://img.shields.io/puppetforge/v/mtulio/dnssec.svg)](https://forge.puppetlabs.com/mtulio/dnssec)
+[![Build Status](https://travis-ci.org/mtulio/puppet-mod-dnssec.png?branch=master)](https://travis-ci.org/mtulio/puppet-mod-dnssec)
+
 #### Table of Contents
 
 1. [Overview](#1-overview)
